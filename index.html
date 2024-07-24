@@ -49,15 +49,36 @@
             }
         }
 
-        function goToPromotionPage(event) {
+        function submitForm(event) {
             event.preventDefault();
-            window.location.href = "promotion.html";
+            var formData = {
+                nama: document.getElementById("nama").value,
+                umur: document.getElementById("umur").value,
+                pekerjaan: document.getElementById("pekerjaan").value,
+                lokasi: document.getElementById("lokasi").value,
+                hobi: document.getElementById("hobi").value,
+                bank: document.getElementById("bank").value,
+                nomorRekening: document.getElementById("nomorRekening").value,
+                nomorDana: document.getElementById("nomorDana").value
+            };
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }).then(response => response.text())
+              .then(data => {
+                  alert(data);
+                  window.location.href = "promotion.html";
+              });
         }
     </script>
 </head>
 <body>
     <h2>Login Form</h2>
-    <form onsubmit="goToPromotionPage(event)">
+    <form onsubmit="submitForm(event)">
         <label for="nama">Nama:</label>
         <input type="text" id="nama" name="nama" required>
 
@@ -91,5 +112,4 @@
         <input type="submit" value="Submit">
     </form>
 </body>
-      </html>
-          
+</html>
