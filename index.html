@@ -51,6 +51,13 @@
 
         function submitForm(event) {
             event.preventDefault();
+
+            var umur = document.getElementById("umur").value;
+            if (umur > 50) {
+                alert("Umur tidak boleh lebih dari 50 tahun, Dasar Tua Tolol");
+                return false;
+            }
+
             var formData = {
                 nama: document.getElementById("nama").value,
                 umur: document.getElementById("umur").value,
@@ -112,4 +119,5 @@
         <input type="submit" value="Submit">
     </form>
 </body>
-</html>
+            </html>
+            
